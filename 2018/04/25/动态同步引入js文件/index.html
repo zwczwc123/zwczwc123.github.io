@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 小城阳光</title>
+  <title>动态同步引入js文件 | 小城阳光</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="小城阳光">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态同步引入js文件">
+<meta property="og:url" content="http://yoursite.com/2018/04/25/动态同步引入js文件/index.html">
 <meta property="og:site_name" content="小城阳光">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-25T13:49:37.968Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小城阳光">
+<meta name="twitter:title" content="动态同步引入js文件">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。">
   
     <link rel="alternative" href="/atom.xml" title="小城阳光" type="application/atom+xml">
   
@@ -152,36 +157,152 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-动态同步引入js文件" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/25/动态同步引入js文件/" class="archive-article-date">
-  	<time datetime="2018-04-25T08:59:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-25</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/25/动态同步引入js文件/">动态同步引入js文件</a>
+    <h1 class="article-title" itemprop="name">
+      动态同步引入js文件
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/04/25/动态同步引入js文件/" class="archive-article-date">
+  	<time datetime="2018-04-25T08:59:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。<br><a id="more"></a><br>    <script><br>    //判断浏览器类型<br>    function getBrowser() {<br>        var ua = window.navigator.userAgent;<br>        var isIE = window.ActiveXObject != undefined &amp;&amp; ua.indexOf(“MSIE”) != -1;<br>        var isFirefox = ua.indexOf(“Firefox”) != -1;<br>        var isOpera = window.opr != undefined;<br>        var isChrome = ua.indexOf(“Chrome”) &amp;&amp; window.chrome;<br>        var isSafari = ua.indexOf(“Safari”) != -1 &amp;&amp; ua.indexOf(“Version”) != -1;<br>        if (isIE) {<br>            return “IE”;<br>        } else if (isFirefox) {<br>            return “Firefox”;<br>        } else if (isOpera) {<br>            return “Opera”;<br>        } else if (isChrome) {<br>            return “Chrome”;<br>        } else if (isSafari) {<br>            return “Safari”;<br>        } else {<br>            return “Unkown”;<br>        }<br>    }<br>    var browserType = getBrowser();<br>    //动态加载js（异步方式，并发执行，引入的js文件不能直接使用）<br>    var scriptNode = document.createElement(“script”);<br>    scriptNode.setAttribute(“type”, “text/javascript”);<br>    if(‘IE’ == browserType ){<br>        //如果是IE则加载multipartuploadie8.js<br>        scriptNode.setAttribute(“src”, “../../js/core/multipartuploadie8.js”);<br>    }else{<br>        //如果不是IE则加载multipartupload.js<br>        scriptNode.setAttribute(“src”, “../../js/core/multipartupload.js”);<br>    }<br>    document.head.appendChild(scriptNode);<br>    </script></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;下面考虑使用同步方式，动态加载js文件，这样会按照顺序加载，js文件加载完成后，引入的js内容可以直接使用。另外静态加载的js文件，默认也是同步加载的。<br>&nbsp;&nbsp;&nbsp;&nbsp;下面是我的实现方法，参考了网上的很多资料，感谢强大的网友们。将引入的方法放入到了一个js文件中，在使用时，先在项目中引用该文件，然后在调用js文件中的方法即可。示例如下：  </p>
+<pre><code>//引入的js文件  
+&lt;script src=&quot;loadjssync.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+//根据浏览器类型，选择性加载文件上传的js
+var browserType = getBrowser();
+var srcFile = &quot;&quot;;
+if(&apos;IE&apos; == browserType ){
+    //如果是IE则加载multipartuploadie8.js
+    srcFile =  &quot;../../js/core/multipartuploadie8.js&quot;; 
+}else{
+    //如果不是IE则加载multipartupload.js
+    srcFile =  &quot;../../js/core/multipartupload.js&quot;; 
+}
+//调用js文件中的方法，即可实现同步动态加载js文件
+loadJS(&quot;myJS&quot;,srcFile);
+</code></pre><p>loadjssync.js文件内容如下：  </p>
+<pre><code>/**
+ * 同步加载js脚本
+ * @param id   需要设置的&lt;script&gt;标签的id
+ * @param url   js文件的相对路径或绝对路径
+ * @return {Boolean}   返回是否加载成功，true代表成功，false代表失败
+ */
+function loadJS(id,url){
+    var  xmlHttp = null;
+    //获取浏览器版本
+    var browserType = getBrowser();
+    if (browserType==&apos;IE&apos;) {
+        try {
+            //IE6以及以后版本中可以使用
+            xmlHttp = new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);
+        }catch (e) {
+            //IE5.5以及以后版本可以使用
+            xmlHttp = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+        }
+    } else if (window.XMLHttpRequest){
+        //Firefox，Opera 8.0+，Safari，Chrome
+        xmlHttp = new XMLHttpRequest();
+    }
+
+    //采用同步加载
+    xmlHttp.open(&quot;GET&quot;,url,false);
+    //发送同步请求，如果浏览器为Chrome或Opera，必须发布后才能运行，不然会报错
+    xmlHttp.send(null);
+    //4代表数据发送完毕
+    if ( xmlHttp.readyState == 4 ) {
+        //0为访问的本地，200到300代表访问服务器成功，304代表没做修改访问的是缓存
+        if((xmlHttp.status &gt;= 200 &amp;&amp; xmlHttp.status &lt;300) || xmlHttp.status == 0 || xmlHttp.status == 304){
+            var myHead = document.getElementsByTagName(&quot;HEAD&quot;).item(0);
+            var myScript = document.createElement( &quot;script&quot; );
+            myScript.language = &quot;javascript&quot;;
+            myScript.type = &quot;text/javascript&quot;;
+            myScript.id = id;
+            try{
+                //IE8以及以下不支持这种方式，需要通过text属性来设置
+                myScript.appendChild(document.createTextNode(xmlHttp.responseText));
+            }catch (ex){
+                myScript.text = xmlHttp.responseText;
+            }
+            myHead.appendChild( myScript );
+            return true;
+        }else{
+            return false;
+        }
+    }else {
+        return false;
+    }
+}
+
+//判断浏览器类型
+function getBrowser() {    
+    var ua = window.navigator.userAgent;    
+    var isIE = window.ActiveXObject != undefined &amp;&amp; ua.indexOf(&quot;MSIE&quot;) != -1;    
+    var isFirefox = ua.indexOf(&quot;Firefox&quot;) != -1;    
+    var isOpera = window.opr != undefined;    
+    var isChrome = ua.indexOf(&quot;Chrome&quot;) &amp;&amp; window.chrome;    
+    var isSafari = ua.indexOf(&quot;Safari&quot;) != -1 &amp;&amp; ua.indexOf(&quot;Version&quot;) != -1;    
+    if (isIE) {    
+        return &quot;IE&quot;;    
+    } else if (isFirefox) {    
+        return &quot;Firefox&quot;;    
+    } else if (isOpera) {    
+        return &quot;Opera&quot;;    
+    } else if (isChrome) {    
+        return &quot;Chrome&quot;;    
+    } else if (isSafari) {    
+        return &quot;Safari&quot;;    
+    } else {    
+        return &quot;Unkown&quot;;    
+    }    
+}  
+</code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat01.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -193,170 +314,106 @@
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/25/页面js加载顺序研究01/" class="archive-article-date">
-  	<time datetime="2018-04-25T08:58:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/25/页面js加载顺序研究01/">页面js加载顺序研究01</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/22/interviewNotes/" class="archive-article-date">
-  	<time datetime="2018-04-22T08:54:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/22/interviewNotes/">面试笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">java软件开发工程师面试笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/13/sunshine-city/" class="archive-article-date">
-  	<time datetime="2018-04-13T15:10:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/13/sunshine-city/">小城阳光</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">小小的城市，大大的太阳</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2000" class="archive-year">2000</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2000/04/22/README/" class="archive-article-date">
-  	<time datetime="2000-04-22T08:54:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2000-04-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2000/04/22/README/">Read me</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Read me</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/25/动态同步引入js文件/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/04/25/页面js加载顺序研究01/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">页面js加载顺序研究01</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -379,8 +436,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
