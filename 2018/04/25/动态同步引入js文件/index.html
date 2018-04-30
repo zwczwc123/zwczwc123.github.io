@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="小城阳光">
 <meta property="og:description" content="1.遇到的问题&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-30T02:25:54.200Z">
+<meta property="og:updated_time" content="2018-04-30T02:34:33.886Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态同步引入js文件">
 <meta name="twitter:description" content="1.遇到的问题&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。">
@@ -177,8 +177,44 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-遇到的问题"><a href="#1-遇到的问题" class="headerlink" title="1.遇到的问题"></a>1.遇到的问题</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。<br><a id="more"></a><br>    <script><br>    //判断浏览器类型<br>    function getBrowser() {<br>        var ua = window.navigator.userAgent;<br>        var isIE = window.ActiveXObject != undefined &amp;&amp; ua.indexOf(“MSIE”) != -1;<br>        var isFirefox = ua.indexOf(“Firefox”) != -1;<br>        var isOpera = window.opr != undefined;<br>        var isChrome = ua.indexOf(“Chrome”) &amp;&amp; window.chrome;<br>        var isSafari = ua.indexOf(“Safari”) != -1 &amp;&amp; ua.indexOf(“Version”) != -1;<br>        if (isIE) {<br>            return “IE”;<br>        } else if (isFirefox) {<br>            return “Firefox”;<br>        } else if (isOpera) {<br>            return “Opera”;<br>        } else if (isChrome) {<br>            return “Chrome”;<br>        } else if (isSafari) {<br>            return “Safari”;<br>        } else {<br>            return “Unkown”;<br>        }<br>    }<br>    var browserType = getBrowser();<br>    //动态加载js（异步方式，并发执行，引入的js文件不能直接使用）<br>    var scriptNode = document.createElement(“script”);<br>    scriptNode.setAttribute(“type”, “text/javascript”);<br>    if(‘IE’ == browserType ){<br>        //如果是IE则加载multipartuploadie8.js<br>        scriptNode.setAttribute(“src”, “../../js/core/multipartuploadie8.js”);<br>    }else{<br>        //如果不是IE则加载multipartupload.js<br>        scriptNode.setAttribute(“src”, “../../js/core/multipartupload.js”);<br>    }<br>    document.head.appendChild(scriptNode);<br>    </script></p>
-<h3 id="2-我的解决方案"><a href="#2-我的解决方案" class="headerlink" title="2.我的解决方案"></a>2.我的解决方案</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;下面考虑使用同步方式，动态加载js文件，这样会按照顺序加载，js文件加载完成后，引入的js内容可以直接使用。另外静态加载的js文件，默认也是同步加载的。<br>&nbsp;&nbsp;&nbsp;&nbsp;下面是我的实现方法，参考了网上的很多资料，感谢强大的网友们。将引入的方法放入到了一个js文件中，在使用时，先在项目中引用该文件，然后在调用js文件中的方法即可。示例如下：  </p>
+        <h3 id="1-遇到的问题"><a href="#1-遇到的问题" class="headerlink" title="1.遇到的问题"></a>1.遇到的问题</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。<a id="more"></a>我的最初代码如下：  </p>
+<pre><code>&lt;script&gt;
+//判断浏览器类型
+function getBrowser() {    
+    var ua = window.navigator.userAgent;    
+    var isIE = window.ActiveXObject != undefined &amp;&amp; ua.indexOf(&quot;MSIE&quot;) != -1;    
+    var isFirefox = ua.indexOf(&quot;Firefox&quot;) != -1;    
+    var isOpera = window.opr != undefined;    
+    var isChrome = ua.indexOf(&quot;Chrome&quot;) &amp;&amp; window.chrome;    
+    var isSafari = ua.indexOf(&quot;Safari&quot;) != -1 &amp;&amp; ua.indexOf(&quot;Version&quot;) != -1;    
+    if (isIE) {    
+        return &quot;IE&quot;;    
+    } else if (isFirefox) {    
+        return &quot;Firefox&quot;;    
+    } else if (isOpera) {    
+        return &quot;Opera&quot;;    
+    } else if (isChrome) {    
+        return &quot;Chrome&quot;;    
+    } else if (isSafari) {    
+        return &quot;Safari&quot;;    
+    } else {    
+        return &quot;Unkown&quot;;    
+    }    
+}  
+var browserType = getBrowser();
+//动态加载js（异步方式，并发执行，引入的js文件不能直接使用）
+var scriptNode = document.createElement(&quot;script&quot;);  
+scriptNode.setAttribute(&quot;type&quot;, &quot;text/javascript&quot;); 
+if(&apos;IE&apos; == browserType ){
+    //如果是IE则加载multipartuploadie8.js
+    scriptNode.setAttribute(&quot;src&quot;, &quot;../../js/core/multipartuploadie8.js&quot;); 
+}else{
+    //如果不是IE则加载multipartupload.js
+    scriptNode.setAttribute(&quot;src&quot;, &quot;../../js/core/multipartupload.js&quot;); 
+}
+document.head.appendChild(scriptNode);
+&lt;/script&gt;
+</code></pre><h3 id="2-我的解决方案"><a href="#2-我的解决方案" class="headerlink" title="2.我的解决方案"></a>2.我的解决方案</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;下面考虑使用同步方式，动态加载js文件，这样会按照顺序加载，js文件加载完成后，引入的js内容可以直接使用。另外静态加载的js文件，默认也是同步加载的。<br>&nbsp;&nbsp;&nbsp;&nbsp;下面是我的实现方法，参考了网上的很多资料，感谢强大的网友们。将引入的方法放入到了一个js文件中，在使用时，先在项目中引用该文件，然后在调用js文件中的方法即可。示例如下：  </p>
 <pre><code>//引入的js文件  
 &lt;script src=&quot;loadjssync.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
 
