@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>动态同步引入js文件 | 小城阳光</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。">
+  <meta name="description" content="1.遇到的问题&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="动态同步引入js文件">
 <meta property="og:url" content="http://yoursite.com/2018/04/25/动态同步引入js文件/index.html">
 <meta property="og:site_name" content="小城阳光">
-<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。">
+<meta property="og:description" content="1.遇到的问题&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-25T13:49:37.968Z">
+<meta property="og:updated_time" content="2018-04-30T02:25:54.200Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态同步引入js文件">
-<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。">
+<meta name="twitter:description" content="1.遇到的问题&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。">
   
     <link rel="alternative" href="/atom.xml" title="小城阳光" type="application/atom+xml">
   
@@ -177,8 +177,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。<br><a id="more"></a><br>    <script><br>    //判断浏览器类型<br>    function getBrowser() {<br>        var ua = window.navigator.userAgent;<br>        var isIE = window.ActiveXObject != undefined &amp;&amp; ua.indexOf(“MSIE”) != -1;<br>        var isFirefox = ua.indexOf(“Firefox”) != -1;<br>        var isOpera = window.opr != undefined;<br>        var isChrome = ua.indexOf(“Chrome”) &amp;&amp; window.chrome;<br>        var isSafari = ua.indexOf(“Safari”) != -1 &amp;&amp; ua.indexOf(“Version”) != -1;<br>        if (isIE) {<br>            return “IE”;<br>        } else if (isFirefox) {<br>            return “Firefox”;<br>        } else if (isOpera) {<br>            return “Opera”;<br>        } else if (isChrome) {<br>            return “Chrome”;<br>        } else if (isSafari) {<br>            return “Safari”;<br>        } else {<br>            return “Unkown”;<br>        }<br>    }<br>    var browserType = getBrowser();<br>    //动态加载js（异步方式，并发执行，引入的js文件不能直接使用）<br>    var scriptNode = document.createElement(“script”);<br>    scriptNode.setAttribute(“type”, “text/javascript”);<br>    if(‘IE’ == browserType ){<br>        //如果是IE则加载multipartuploadie8.js<br>        scriptNode.setAttribute(“src”, “../../js/core/multipartuploadie8.js”);<br>    }else{<br>        //如果不是IE则加载multipartupload.js<br>        scriptNode.setAttribute(“src”, “../../js/core/multipartupload.js”);<br>    }<br>    document.head.appendChild(scriptNode);<br>    </script></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;下面考虑使用同步方式，动态加载js文件，这样会按照顺序加载，js文件加载完成后，引入的js内容可以直接使用。另外静态加载的js文件，默认也是同步加载的。<br>&nbsp;&nbsp;&nbsp;&nbsp;下面是我的实现方法，参考了网上的很多资料，感谢强大的网友们。将引入的方法放入到了一个js文件中，在使用时，先在项目中引用该文件，然后在调用js文件中的方法即可。示例如下：  </p>
+        <h3 id="1-遇到的问题"><a href="#1-遇到的问题" class="headerlink" title="1.遇到的问题"></a>1.遇到的问题</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;最近做的项目中，需要根据浏览器类型，动态的引入不同的js文件，最开始采用下面的方式引入，但是经常会出现引入的文件不成功的现象。查找资料研究后，发现下面的方式是异步加载的，并发执行，即在动态加载js文件的同时，也会加载其他的，因此，引入的js内容不能直接使用，否则会报错。<br><a id="more"></a><br>    <script><br>    //判断浏览器类型<br>    function getBrowser() {<br>        var ua = window.navigator.userAgent;<br>        var isIE = window.ActiveXObject != undefined &amp;&amp; ua.indexOf(“MSIE”) != -1;<br>        var isFirefox = ua.indexOf(“Firefox”) != -1;<br>        var isOpera = window.opr != undefined;<br>        var isChrome = ua.indexOf(“Chrome”) &amp;&amp; window.chrome;<br>        var isSafari = ua.indexOf(“Safari”) != -1 &amp;&amp; ua.indexOf(“Version”) != -1;<br>        if (isIE) {<br>            return “IE”;<br>        } else if (isFirefox) {<br>            return “Firefox”;<br>        } else if (isOpera) {<br>            return “Opera”;<br>        } else if (isChrome) {<br>            return “Chrome”;<br>        } else if (isSafari) {<br>            return “Safari”;<br>        } else {<br>            return “Unkown”;<br>        }<br>    }<br>    var browserType = getBrowser();<br>    //动态加载js（异步方式，并发执行，引入的js文件不能直接使用）<br>    var scriptNode = document.createElement(“script”);<br>    scriptNode.setAttribute(“type”, “text/javascript”);<br>    if(‘IE’ == browserType ){<br>        //如果是IE则加载multipartuploadie8.js<br>        scriptNode.setAttribute(“src”, “../../js/core/multipartuploadie8.js”);<br>    }else{<br>        //如果不是IE则加载multipartupload.js<br>        scriptNode.setAttribute(“src”, “../../js/core/multipartupload.js”);<br>    }<br>    document.head.appendChild(scriptNode);<br>    </script></p>
+<h3 id="2-我的解决方案"><a href="#2-我的解决方案" class="headerlink" title="2.我的解决方案"></a>2.我的解决方案</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;下面考虑使用同步方式，动态加载js文件，这样会按照顺序加载，js文件加载完成后，引入的js内容可以直接使用。另外静态加载的js文件，默认也是同步加载的。<br>&nbsp;&nbsp;&nbsp;&nbsp;下面是我的实现方法，参考了网上的很多资料，感谢强大的网友们。将引入的方法放入到了一个js文件中，在使用时，先在项目中引用该文件，然后在调用js文件中的方法即可。示例如下：  </p>
 <pre><code>//引入的js文件  
 &lt;script src=&quot;loadjssync.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
 
@@ -416,6 +416,30 @@ function getBrowser() {
   
 
  <!-- 目录内容 -->
+
+	<p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+	<span class="btn-bg"></span>
+	<span class="btn-text">文章导航</span>
+	</p>
+	<div id="toc-article" class="toc-article">
+		<span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-遇到的问题"><span class="toc-number">1.</span> <span class="toc-text">1.遇到的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-我的解决方案"><span class="toc-number">2.</span> <span class="toc-text">2.我的解决方案</span></a></li></ol>
+   </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
      
 <!-- 目录内容结束 -->
 
@@ -509,11 +533,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">小小的城市，大大的太阳</a>
+                <a href="javascript:void(0)" class="js-tag color1">java软件开发工程师面试笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java软件开发工程师面试笔记</a>
+                <a href="javascript:void(0)" class="js-tag color2">小小的城市，大大的太阳</a>
               </li>
              
               <li class="article-tag-list-item">
