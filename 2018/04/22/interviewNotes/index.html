@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="小城阳光">
 <meta property="og:description" content="Part1：记录面试中遇到的问题1-1.java内存模型1-2.java缓存机制">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-24T16:00:43.860Z">
+<meta property="og:updated_time" content="2018-05-27T10:00:57.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试笔记">
 <meta name="twitter:description" content="Part1：记录面试中遇到的问题1-1.java内存模型1-2.java缓存机制">
@@ -205,7 +205,7 @@ var _hmt = _hmt || [];
 			<div id="toc-article" class="toc-article">
 				<span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 				<strong class="toc-title">文章目录</strong>
-				   <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Part1：记录面试中遇到的问题"><span class="toc-number">1.</span> <span class="toc-text">Part1：记录面试中遇到的问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part2：java基础"><span class="toc-number">2.</span> <span class="toc-text">Part2：java基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part3-做笔试面试题中的笔记总结。"><span class="toc-number">3.</span> <span class="toc-text">Part3:做笔试面试题中的笔记总结。</span></a></li></ol>
+				   <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Part1：记录面试中遇到的问题"><span class="toc-number">1.</span> <span class="toc-text">Part1：记录面试中遇到的问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part2：java基础"><span class="toc-number">2.</span> <span class="toc-text">Part2：java基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part3-做笔试面试题中的笔记总结。"><span class="toc-number">3.</span> <span class="toc-text">Part3:做笔试面试题中的笔记总结。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-关于构造方法"><span class="toc-number">3.0.1.</span> <span class="toc-text">一.关于构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-关于main方法"><span class="toc-number">3.0.2.</span> <span class="toc-text">二.关于main方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-java中的关键字"><span class="toc-number">3.0.3.</span> <span class="toc-text">三.java中的关键字</span></a></li></ol></li></ol></li></ol>
 				 </div>
 		   <script type="text/javascript">
 			function showToc(){
@@ -228,8 +228,8 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Part1：记录面试中遇到的问题"><a href="#Part1：记录面试中遇到的问题" class="headerlink" title="Part1：记录面试中遇到的问题"></a>Part1：记录面试中遇到的问题</h1><p>1-1.java内存模型<br>1-2.java缓存机制<br><a id="more"></a><br>1-3.快速排序算法<br>1-4.sql调优<br>1-5.java Error和Exception<br>1-6.垃圾回收<br>1-7.json数据格式<br>1-8.递归算法（递归计算阶乘，菲波那切数列某一项的值）<br>1-9.java遍历集合，遍历Map<br>1-10.spring ioc和aop<br>1-11.集合与Map，以及底层实现原理<br>1-12.String以及String判断==<br>1-13.Integer的陷阱  </p>
-<h1 id="Part2：java基础"><a href="#Part2：java基础" class="headerlink" title="Part2：java基础"></a>Part2：java基础</h1><h1 id="Part3-做笔试面试题中的笔记总结。"><a href="#Part3-做笔试面试题中的笔记总结。" class="headerlink" title="Part3:做笔试面试题中的笔记总结。"></a>Part3:做笔试面试题中的笔记总结。</h1><p>###一.关于构造方法<br>1.类中的构造方法可以省略，如果省略不写，编译器会提供一个默认的构造方法。<br>2.构造方法必须与该构造方法所在类的类名保持一致。<br>3.类中的方法名也可以与类名相同，但是实际开发过程中不建议这样写。<br>4.当一个对象被new的时候必定会调用构造方法。<br>5.构造方法可以重载，一个类可以有多个构造方法。   </p>
-<p>###二.关于main方法<br>1.在JAVA语言中，main方法是程序的入口，一个程序要想运行，必须要有main方法，但是只有满足特定条件的main方法，才能作为程序的入口方法。<br>2.java是面向对象语言，所有的属性与方法都必须定义在类里面，main方法也要定义在类里面。<br>3.java程序可以有多个main方法，但是只有public static void main (String [] args)方法才是java程序的入口，其他main方法都不是。并且这个入口方法必须被定义在类名与文件名相同的被public修饰的类中。如下所示：   </p>
+<h1 id="Part2：java基础"><a href="#Part2：java基础" class="headerlink" title="Part2：java基础"></a>Part2：java基础</h1><h1 id="Part3-做笔试面试题中的笔记总结。"><a href="#Part3-做笔试面试题中的笔记总结。" class="headerlink" title="Part3:做笔试面试题中的笔记总结。"></a>Part3:做笔试面试题中的笔记总结。</h1><h3 id="一-关于构造方法"><a href="#一-关于构造方法" class="headerlink" title="一.关于构造方法"></a>一.关于构造方法</h3><p>1.类中的构造方法可以省略，如果省略不写，编译器会提供一个默认的构造方法。<br>2.构造方法必须与该构造方法所在类的类名保持一致。<br>3.类中的方法名也可以与类名相同，但是实际开发过程中不建议这样写。<br>4.当一个对象被new的时候必定会调用构造方法。<br>5.构造方法可以重载，一个类可以有多个构造方法。   </p>
+<h3 id="二-关于main方法"><a href="#二-关于main方法" class="headerlink" title="二.关于main方法"></a>二.关于main方法</h3><p>1.在JAVA语言中，main方法是程序的入口，一个程序要想运行，必须要有main方法，但是只有满足特定条件的main方法，才能作为程序的入口方法。<br>2.java是面向对象语言，所有的属性与方法都必须定义在类里面，main方法也要定义在类里面。<br>3.java程序可以有多个main方法，但是只有public static void main (String [] args)方法才是java程序的入口，其他main方法都不是。并且这个入口方法必须被定义在类名与文件名相同的被public修饰的类中。如下所示：   </p>
 <pre><code>class T {   
     public static void main(String[] args){   
         System.out.println(&quot;T main&quot;);
@@ -243,7 +243,7 @@ public class Test {
 }
 //程序运行结果为Test main
 </code></pre><p>4.在java语言中，不管方法体有几条语句，都需要用大括号{}括起来<br>5.在java语言中，一个文件中可以有多个类的存在，被public关键字修饰的类的名字必须与文件名相同。   </p>
-<p>###三.java中的关键字<br>具体请参看  </p>
+<h3 id="三-java中的关键字"><a href="#三-java中的关键字" class="headerlink" title="三.java中的关键字"></a>三.java中的关键字</h3><p>具体请参看  </p>
 
       
 
